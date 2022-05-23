@@ -1,13 +1,15 @@
 
                           ###   DASAR DASAR R   ###
 
-myString <- "Hello, World!"
+# Mendefinisikan variabel
+myString <- "Hello, World!" # X = 0 | X <- 0
 print(myString)
 
 # membuat vector
-apple <- c('red','green',"yellow")
+apple <- c('red','green',"yellow") 
 number <- c(1,2,3)
 print(apple)
+print(number)
 
 # cek class vector
 print(class(apple))
@@ -18,7 +20,7 @@ list1 <- list(c(2,5,3),21.3,sin)
 print(list1)
 
 # membuat array
-a <- array(c('green','yellow'), dim = c(3,3,1))
+a <- array(c('green','yellow'), dim = c(3,3,1)) # x=3, y=3, z=1
 print(a)
 
 # membuat data frame
@@ -39,9 +41,9 @@ print(BMI)
 sample(1:10,1)
 sample(5:50,10)
 
-# Probabilitas melempar 1 buah dadu
+# Probabilitas melempar 1 buah dadu #mata dadu ada 6 p(x)=1/6
 sample(1:6, 1)
-probability <- rep(1/6,6) 
+probability <- rep(1/6,6) #replicate 1/6 (probabilitas) sebanyak 6kali
 print(probability)
 
 # plot probabilitas
@@ -56,7 +58,7 @@ print(cum_probability)
 # plot probabilitas kumulatif
 plot(cum_probability, 
      xlab = "outcomes", 
-     main = "Distribusi Probabilitas Kumulatif") 
+     main = "Distribusi Probabilitas Kumulatif")
 
                         ###   NILAI HARAPAN   ###
 
@@ -70,11 +72,14 @@ plot(cum_probability,
 #    3    |   0,11
 #    4    |   0,02
 
+# E(X) = 1,45
+
 vals <- c(0, 1, 2, 3, 4)
 probs <- c(.18, .34, .35, .11, .02)
 
 # Metode 1
 sum(vals*probs)
+# Nilai harapan = hasil penjumlahan dari perkalian X terhadap P(X)
 
 # Metode 2
 weighted.mean(vals, probs)
