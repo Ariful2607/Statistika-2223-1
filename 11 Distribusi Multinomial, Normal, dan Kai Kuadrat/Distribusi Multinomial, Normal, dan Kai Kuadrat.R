@@ -4,7 +4,7 @@
 
 # The multinomial distribution describes the probability of obtaining a 
 # specific number of counts for k different outcomes, when each outcome 
-# has a fixed probability of occurring.
+# has a fixed probability of occurring. independen
 
 # If a random variable X follows a multinomial distribution, then the 
 # probability that outcome 1 occurs exactly x1 times, outcome 2 occurs exactly 
@@ -29,14 +29,15 @@ dmultinom(x=c(1, 6, 8), prob=c(.4, .5, .1))
 # berapa peluang jumlah unit ”baik” sebanyak 18, unit ”tidak baik tetapi bisa 
 # diperbaiki” sebanyak 2 dan unit ”rusak” tidak ada? (Jawaban : 0,102)
 
-x1 <- 18
-x2 <- 2
-x3 <- 0
-px1 <- .85
-px2 <- .1
-px3 <- .05
+p_x1 = 0.85
+p_x2 = 0.1
+p_x3 = 0.05
+n = 20
+x1 = 18
+x2 = 2
+x3 = 0
 
-dmultinom(x=c(x1, x2, x3), prob=c(px1, px2, px3))
+dmultinom(x=c(x1, x2, x3), prob=c(p_x1, p_x2, p_x3))
 
 
                       ###   Distribusi Normal   ###
@@ -48,7 +49,7 @@ dmultinom(x=c(x1, x2, x3), prob=c(px1, px2, px3))
 # in real case scenarios. For example, the height of the population, shoe size, 
 # IQ level, rolling a dice, and many more.
 
-#In R, there are 4 built-in functions to generate normal distribution:
+# In R, there are 4 built-in functions to generate normal distribution:
 
 # dnorm(x, mean, sd) -> density function of distribution
 # pnorm(x, mean, sd) -> cumulative distribution function
@@ -75,11 +76,11 @@ dev.off()
 # baterai didistribusikan secara normal dengan rata-rata adalah 5 jam dan 
 # standar deviasi 1,5 jam. Bejo membeli laptop tersebut dan ingin mengetahui 
 # ketahanan daya baterai laptop tersebut untuk penggunaan normal. Bantulah Bejo 
-# untuk menghitung probabilitas laptop tersebut dapat bertahan antara 6 jam!
+# untuk menghitung probabilitas laptop tersebut dapat bertahan 6 jam!
 
-x <- 6
 rata2 <- 5
 std <- 1.5
+x <- 6
 
 sb_x = seq(-rata2, rata2, by=0.1)
 sb_y <- dnorm(sb_x,mean(sb_x),sd(sb_x))
@@ -108,7 +109,7 @@ prob
 # rchisq() -> random numbers from the chi-square distribution
 
 # defining degrees of freedom
-df = 5
+df = 5 #tingkat kesalahan yang dapat ditolerir maksimal 5%
 
 # computing values of 50k random values with 5 degrees of freedom
 x <- rchisq(50000, df = 5)
