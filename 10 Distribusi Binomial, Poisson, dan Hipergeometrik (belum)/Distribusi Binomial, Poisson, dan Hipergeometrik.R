@@ -3,42 +3,35 @@
                                                                 ###   Distribusi Binomial   ###
 
 
-# Binomial distribution in R is a probability distribution used in statistics. The binomial distribution is a discrete distribution and has only two outcomes 
-# i.e. success or failure. All its trials are independent, the probability of success remains the same and the previous outcome does not affect the next 
-# outcome. The outcomes from different trials are independent. Binomial distribution helps us to find the individual probabilities as well as 
-# cumulative probabilities over a certain range.
+# Terdapat empat fungsi distribusi binomial pada R yaitu:
 
-# It is also used in many real-life scenarios such as in determining whether a particular lottery ticket has won or not, whether a drug is able to cure a 
-# person or not, it can be used to determine the number of heads or tails in a finite number of tosses, for analyzing the outcome of a die, etc.
+# dbinom(k, n, p) -> distribusi probabilitas binomial
+# pbinom(k, n, p) -> distribusi probabilitas binomial kumulatif
+# qbinom(P, n, p) -> digunakan untuk mencari kuantil ke-n
+# rbinom(n, N, p) -> menghasilkan n variabel acak dari probabilitas tertentu
 
-# We have four functions for handling binomial distribution in R namely:
+### Keterangan
+# x: jumlah sukses/gagal
+# n: jumlah sampel/percobaan
+# p: probabilitas sukses/gagal
 
-# dbinom(k, n, p) -> probability binomial distribution
-# pbinom(k, n, p) -> cumulative probability of binomial distribution
-# qbinom(P, n, p) -> used to find the nth quantile
-# rbinom(n, N, p) -> generates n random variables of a particular probability
+# Misal dalam pelemparan dadu sebanyak 10 kali, kemungkinan mata dadu 6 muncul
+# sebanyak tiga kali adalah sebagai berikut
+dbinom(3, size = 10, prob = 1 / 6) 
 
-# Calculate probability binomial distribution
-dbinom(3, size = 13, prob = 1 / 6)
-probabilities <- dbinom(x = c(0:10), size = 10, prob = 1 / 6)
-data.frame(probabilities)
+# Apabila menggunakan vector kemunculan mulai dari 0 s/d 10 kali 
+kemungkinan <- dbinom(x = c(0:10), size = 10, prob = 1 / 6)
+data.frame(kemungkinan)
 
-#Plot binomial distribution
-plot(0:10, probabilities, type = "l")
+#Plot distribusi binomial 
+plot(0:10, kemungkinan, type = "l")
 
-# Calculate cumulative probability binomial distribution
-pbinom(3, size = 13, prob = 1 / 6)
+# Menghitung distribusi probabilitas binomial kumulatif
+pbinom(1, size = 10, prob = 1 / 6)
 
-# plot cumulative distribution
+# plot distribusi kumulatif
 plot(0:10, pbinom(0:10, size = 10, prob = 1 / 6), type = "l")
 
-#find quantile
-qbinom(0.8419226, size = 13, prob = 1 / 6)
-
-x <- seq(0, 1, by = 0.1)
-y <- qbinom(x, size = 13, prob = 1 / 6)
-
-plot(x, y, type = 'l')
 
 # Contoh Soal
 
@@ -48,7 +41,7 @@ plot(x, y, type = 'l')
 
 px <- .2 # Probabilitas barang rusak 20%
 n <- 8 # Pembelian 8 buah barang
-X <- 5 # barang yang rusakk
+X <- 5 # barang yang rusak
 
 dbinom(X, size = n, prob = px)
 
@@ -56,30 +49,13 @@ dbinom(X, size = n, prob = px)
                                                                 ###   Distribusi Poisson   ###
 
 
-# The Poisson distribution represents the probability of a provided number of cases happening in a set period of space or time if these cases happen 
-# with an identified constant mean rate (free of the period since the ultimate event). Poisson distribution has been named after Siméon Denis Poisson
-# (French Mathematician). 
+# Terdapat empat fungsi distribusi Poisson pada R yaitu:
+# dpois (x,lambda) 
+# ppois (q,lambda) 
+# rpois (n,lambda) 
+# qpois (q,lambda)
 
-# Many probability distributions can be easily implemented in R language with the help of R’s inbuilt functions. There are four Poisson functions 
-# available in R:
-
-# dpois (x,lambda,log) -> probability of a random variable using poisson distribution
-# ppois(q,lambda,lower.tail,log) -> cumulative probability function of poisson distribution
-# rpois(n,lambda) -> generating random numbers from a given Poisson’s distribution
-# qpois(q,lambda,lower.tail,log) -> generating quantile of a given Poisson’s distribution
-
-dpois(2, 3)
-dpois(6, 6)
-
-ppois(2, 3)
-ppois(6, 6)
-
-rpois(2, 3)
-rpois(6, 6)
-
-y <- c(.01, .05, .1, .2)
-qpois(y, 2)
-qpois(y, 6)
+#lambda <- N*s
 
 # Contoh 1
 
@@ -156,71 +132,33 @@ ppois (X,lambda)
                                                               ###   Distribusi Hipergeometrik   ###
 
 
-# Hypergeometric Distribution in R Language is defined as a method that is used to calculate probabilities when sampling without replacement 
-# is to be done in order to get the density value.
+# Pada R, terdapat 4 fungsi distribusi Hipergeometrik:
 
-# In R, there are 4 built-in functions to generate Hypergeometric Distribution:
+# dhyper(x, s, g, n) 
+# phyper(x, s, g, n) 
+# qhyper(x, s, g, n) 
+# rhyper(N, s, g, n)
 
-# dhyper(x, m, n, k) -> Hypergeometric Density Distribution used in order to get the density value
-# phyper(x, m, n, k) -> Hypergeometric Cumulative Distribution Function
-# qhyper(x, m, n, k) -> Hypergeometric Quantile Function
-# rhyper(N, m, n, k) -> generating random numbers function by specifying a seed and sample size
+### Keterangan
+# x: jumlah sukses
+# s: jumlah populasi sukses
+# g: jumlah populasi gagal
+# n: jumlah sampel/percobaan
 
-
-# Specify x-values for dhyper function
-x_dhyper <- seq(0, 22, by = 1)
-
-# Apply dhyper function
-y_dhyper <- dhyper(x_dhyper, m = 45, n = 30, k = 20)   
-
-# Plot dhyper values
-plot(y_dhyper)
-
-# Specify x-values for phyper function
-x_phyper <- seq(0, 22, by = 1)    
-
-# Apply phyper function
-y_phyper <- phyper(x_phyper, m = 40, n = 20, k = 31)  
-
-# Plot phyper values
-plot(y_phyper)
-
-# Specify x-values for qhyper function
-x_qhyper <- seq(0, 1, by = 0.02)        
-
-# Apply qhyper function
-y_qhyper <- qhyper(x_qhyper, m = 49, n = 18, k = 30)    
-
-# Plot qhyper values
-plot(y_qhyper)
-
-# Set seed for reproducibility
-# Specify sample size
-set.seed(400)                                 
-N <- 10000                                      
-
-# Draw N hypergeometrically distributed values
-y_rhyper <- rhyper(N, m = 50, n = 20, k = 30) 
-y_rhyper         
-
-# Plot of randomly drawn hyper density
-hist(y_rhyper,                                          
-     breaks = 50,
-     main = "")
 
 # Contoh
 
 # Sebuah anggota komite terdiri dari 5 orang: 3 wanita dan 2 laki-laki.  Misalkan 2 dari 5 anggota komite tersebut dipilih untuk menjadi 
 # delegasi dalam sebuah konferensi.
-# 1. Berapa probabilitas bahwa dari pemilihan secara acak didapat 2  orang wanita?
-# 2. Berapa probabilitas dari 2 orang yang terpilih adalah 1 laki-laki  dan 1 perempuan?
+# 1. Berapa probabilitas bahwa dari pemilihan secara acak didapat 2  orang wanita? (Jawab:0.3)
+# 2. Berapa probabilitas dari 2 orang yang terpilih adalah 1 laki-laki  dan 1 perempuan? (Jawab:0.6)
 
-N <- 5
-n <- 2
-r <- 3
+s <- 3 #Sukses disini jika wanita terpilih sehingga bernilai 3
+g <- 2 #Gagal disini jika laki-laki terpilih sehingga bernilai 2
+n <- 2 #Jumlah anggota yang dipilih
 
-x1 <- 2
-x2 <- 1
+x1 <- 2 #Dipilih 2 wanita 0 laki-laki
+x2 <- 1 #Dipilih 1 wanita 1 laki-laki
 
-dhyper(x1, m = N, n = n, k = r) 
-phyper(x2, m = N, n = n, k = r)
+dhyper(x1, s, g, n) 
+dhyper(x2, s, g, n) 
